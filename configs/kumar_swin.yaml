@@ -1,0 +1,52 @@
+# Copyright (C) 2017 NVIDIA Corporation.  All rights reserved.
+# Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
+
+# logger options
+image_save_epoch: 5        # How often do you want to save output images during training
+image_display_epoch: 5       # How often do you want to display output images during training
+display_size: 16              # How many images do you want to display each time
+snapshot_save_epoch: 5     # How often do you want to save trained models
+log_iter: 1                  # How often do you want to log the training stats
+
+mask_rescoring: false
+
+# model options
+model:
+  backbone: swin
+  pretrain: true
+  frozen_stages: -1
+  norm_eval: false
+  seg_feat_channels: 256
+  ins_out_channels: 256
+  stacked_convs: 7
+  kernel_size: 1
+  num_classes: 2
+
+train:
+  max_epoch: 100                # maximum number of training iterations
+  batch_size: 8                 # batch size
+  num_workers: 4                #
+  optim: adamw
+  lr: 0.0001                    # initial learning rate 5e-4
+  weight_decay: 0.0001          # weight decay 1e-4
+  beta1: 0.9                    # Adam parameter
+  beta2: 0.999                  # Adam parameter
+  lr_policy: multistep          # learning rate scheduler
+  gamma: 0.1                    # how much to decay learning rate
+  use_mixed: false
+  lambda_ins: 1                 # weight of image instance segmentation loss
+  lambda_cate: 1                # weight of image category classification loss
+
+dataroot: ./datasets/kumar
+
+stainnorm: normed
+
+image_norm_mean:
+    - 0.71174131
+    - 0.5287984
+    - 0.63705888
+image_norm_std:
+    - 0.17307392
+    - 0.19106038
+    - 0.14219015
+
