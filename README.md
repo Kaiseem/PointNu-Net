@@ -1,4 +1,4 @@
 # PointNu-Net
 PointNu-Net Project
 
-The code shall be upload soon in two days.
+The instruction and README shall be upload soon in two days.
