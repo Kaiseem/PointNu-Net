@@ -28,7 +28,7 @@ import time
 import scipy.io as scio
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--output_dir', type=str, default='E:/outputs')
+parser.add_argument('--output_dir', type=str, default='outputs')
 parser.add_argument('--name', type=str, default='tmp')
 parser.add_argument('--epoch',type=int,default=100)
 parser.add_argument('--load_size',type=int,default=1024)

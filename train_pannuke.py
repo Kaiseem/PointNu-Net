@@ -15,7 +15,7 @@ parser.add_argument('--name', type=str, default='pannuke_experiment')
 parser.add_argument('--train_fold', type=int, default=2)
 parser.add_argument('--val_fold', type=int, default=1)
 parser.add_argument('--test_fold', type=int, default=3)
-parser.add_argument('--output_dir', type=str, default='D:/outputs')
+parser.add_argument('--output_dir', type=str, default='outputs')
 parser.add_argument('--seed', type=int, default=10)
 opts = parser.parse_args()
 

@@ -118,7 +118,12 @@ python train_pannuke.py --name=pannuke_exp --seed=888 --train_fold={} --val_fold
 
 run the command to inference the model
 ```bash
-python infer_pannuke.py --name=pannuke_exp --seed=888 --train_fold={} --test_fold={}
+python infer_pannuke.py --name=pannuke_exp --train_fold={} --test_fold={}
+```
+
+run the command to evaluate the performance
+```bash
+python eval_pannuke.py --name=pannuke_exp --train_fold={} --test_fold={}
 ```
 
 </details>

@@ -12,7 +12,7 @@ import argparse
 import numpy as np
 from utils import get_config,collate_func
 parser = argparse.ArgumentParser()
-parser.add_argument('--output_dir', type=str, default='D:/outputs')
+parser.add_argument('--output_dir', type=str, default='outputs')
 parser.add_argument('--name', type=str, default='pannuke227')
 parser.add_argument('--train_fold', type=int, default=2)
 parser.add_argument('--test_fold', type=int, default=3)

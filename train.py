@@ -15,7 +15,7 @@ import random
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', type=str, default='configs/kumar_notype_large.yaml')
 parser.add_argument('--name', type=str, default='tmp')
-parser.add_argument('--output_dir', type=str, default='E:/outputs')
+parser.add_argument('--output_dir', type=str, default='outputs')
 parser.add_argument('--seed', type=int, default=10)
 opts = parser.parse_args()
 
