@@ -149,27 +149,3 @@ def ensemble_img(ins_list,cate_list,score_list):
             else:
                 output_img = np.where(output_img > 0, output_img, ins_ * ins_num)
     return output_img
-
-def gaussian_radius1(det_size,min_overlap=0.7):
-    height, width = det_size
-    ra=(1-min_overlap**0.5)/2**0.5 *height
-    rb=(1-min_overlap**0.5)/2**0.5 *width
-    return ra,rb
-
-def gaussian2D1(shape, sigmah=1.,sigmaw=1.):
-    m, n = [(ss - 1.) / 2. for ss in shape]
-    y, x = np.ogrid[-m:m+1,-n:n+1]
-    h = np.exp(-(x * x / (2 * sigmaw * sigmaw)+y * y / (2 * sigmah * sigmah)))
-    h[h < np.finfo(h.dtype).eps * h.max()] = 0
-    return h
-
-def draw_gaussian1(heatmap, center,rw, rh):
-    diameterw = float(2 * (int(rw)+1) + 1)
-    diameterh = float(2 * (int(rh)+1) + 1)
-    gaussian = gaussian2D1((diameterh, diameterw), sigmah= rh / 3, sigmaw= rw / 3)#gaussian_2d_kernel(int(diameter),radius/3)#
-    coord_w, coord_h = center
-    height, width = heatmap.shape
-    temp=np.zeros((height,width), dtype=np.float)
-    temp = insert_image(temp, gaussian, coord_h, coord_w)
-    np.maximum(heatmap, temp, out=heatmap)
-    return temp

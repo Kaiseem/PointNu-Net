@@ -126,7 +126,6 @@ if __name__ == '__main__':
                     offset_h = i * stride
                     offset_w = j * stride
                     if center_h >= patch_size // 2 - stride // 2 and center_h <= patch_size // 2 + stride // 2 and center_w >= patch_size // 2 - stride // 2 and center_w <= patch_size // 2 + stride // 2:
-
                         focus_area = output_seg[offset_h:offset_h + patch_size, offset_w:offset_w + patch_size].copy()
                         if np.sum(np.logical_and(focus_area > 0, seg_)) == 0:
                             output_seg[offset_h:offset_h + patch_size, offset_w:offset_w + patch_size] = np.where(
@@ -171,9 +170,8 @@ if __name__ == '__main__':
         print(f'dice {round(float(dice), 3)} AJI {round(float(aji), 3)}  dq {round(float(dq), 3)} sq {round(float(sq), 3)} pq {round(float(pq), 3)} gt up {len(unpaired_true)} pred up {len(unpaired_pred)}')
         title=f'DICE:{round(float(dice), 3)}, AJI:{round(float(aji), 3)},\n DQ:{round(float(dq), 3)}, SQ:{round(float(sq), 3)}, PQ:{round(float(pq), 3)}'
         #_imageshow(test_img[pad_size:-pad_size, pad_size:-pad_size],output_seg,test_GT,unpaired_pred,unpaired_true,title=title)
-      #  _imagesave(original_img,output_seg,None,f'consep_pred/{test_file_name}.png')
-      #  _imagesave(original_img, test_GT, None, f'consep_gt/{test_file_name}.png')
-
+        #_imagesave(original_img,output_seg,None,f'consep_pred/{test_file_name}.png')
+        #_imagesave(original_img, test_GT, None, f'consep_gt/{test_file_name}.png')
 
         #results={'pred':output_seg, 'gt':test_GT,'paired_true':paired_true,'paired_pred':paired_pred,'unpaired_true':unpaired_true,'unpaired_pred':unpaired_pred}
 

@@ -38,4 +38,4 @@ train:
   lambda_ins: 1                 # weight of image instance segmentation loss
   lambda_cate: 1                # weight of image category classification loss
 
-dataroot: E:/datasets/PanNuKe
+dataroot: ./datasets/PanNuKe

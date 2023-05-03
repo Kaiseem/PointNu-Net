@@ -55,7 +55,6 @@ class PointNuNet(SegBaseModel):
 
     def forward_res(self, x):
         c1, c2, c3, c4, c5 = self.base_forward(x)
-
         c2, c3, c4, c5=self.fpn(c2, c3, c4, c5)
         x0_h, x0_w = c2.size(2), c2.size(3)
         c3 = F.interpolate(c3, size=(x0_h, x0_w), mode='bilinear', align_corners=True)
@@ -68,12 +67,10 @@ class PointNuNet(SegBaseModel):
 
     def forward_hrnet(self, x):
         c2,c3,c4,c5 = self.pretrained(x)
-
         x0_h, x0_w = c2.size(2), c2.size(3)
         c3 = F.interpolate(c3, size=(x0_h, x0_w), mode='bilinear', align_corners=True)
         c4 = F.interpolate(c4, size=(x0_h, x0_w), mode='bilinear', align_corners=True)
         c5 = F.interpolate(c5, size=(x0_h, x0_w), mode='bilinear', align_corners=True)
-
         cat_x = torch.cat([c2,c3,c4,c5], 1)
 
         f1=self.jpfm_1(cat_x)
@@ -82,7 +79,6 @@ class PointNuNet(SegBaseModel):
         if self.output_stride!=4:
             f2=F.interpolate(f2, size=(256//self.output_stride, 256//self.output_stride), mode='bilinear', align_corners=True)
             f3=F.interpolate(f3, size=(256//self.output_stride, 256//self.output_stride), mode='bilinear', align_corners=True)
-
         output=self.heads(f1,f2,f3)
 
         return output
@@ -169,7 +165,7 @@ class _PointNuNetHead(nn.Module):
         torch.nn.init.constant_(self.head_cate.bias, bias_init)
 
     def forward(self, feats,f2,f3):
-        # cate branch
+        # feature branch
         mask_feat=feats
         for i, mask_layer in enumerate(self.mask_convs):
             mask_feat = mask_layer(mask_feat)

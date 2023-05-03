@@ -460,7 +460,7 @@ def hrnet_w18_v2(pretrained=False, **kwargs):
     fuse_method = ['sum', 'sum', 'sum', 'sum']
     model = HighResolutionNet(blocks, num_channels, num_modules, num_branches, num_blocks, fuse_method)
     if pretrained:
-        root = r'C:\Users\Ykk\.torch\models\hrnet_w18_small_model_v2.pth'
+        root = r'.torch\models\hrnet_w18_small_model_v2.pth'
         old_dict = torch.load(root)
         model_dict = model.state_dict()
         for i,(k,v) in enumerate(old_dict.items()):
@@ -481,7 +481,7 @@ def hrnet_w32(pretrained=False, **kwargs):
     fuse_method = ['sum', 'sum', 'sum', 'sum']
     model = HighResolutionNet(blocks, num_channels, num_modules, num_branches, num_blocks, fuse_method)
     if pretrained:
-        root = r'C:\Users\Ykk\.torch\models\hrnetv2_w32_imagenet_pretrained.pth'
+        root = r'.torch\models\hrnetv2_w32_imagenet_pretrained.pth'
         old_dict = torch.load(root)
         model_dict = model.state_dict()
         for i,(k,v) in enumerate(old_dict.items()):
@@ -501,7 +501,7 @@ def hrnet_w44(pretrained=False, **kwargs):
     fuse_method = ['sum', 'sum', 'sum', 'sum']
     model = HighResolutionNet(blocks, num_channels, num_modules, num_branches, num_blocks, fuse_method)
     if pretrained:
-        root = r'C:\Users\Ykk\.torch\models\hrnetv2_w44_imagenet_pretrained.pth'
+        root = r'.torch\models\hrnetv2_w44_imagenet_pretrained.pth'
         old_dict = torch.load(root)
         model_dict = model.state_dict()
         for i,(k,v) in enumerate(old_dict.items()):
