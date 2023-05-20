@@ -9,7 +9,7 @@ Both University of Liverpool and Xi'an Jiaotong-liverpool University
 Automatic nuclei segmentation and classification play a vital role in digital pathology. However, previous works are mostly built on data with limited diversity and small sizes, making the results questionable or misleading in actual downstream tasks. In this paper, we aim to build a reliable and robust method capable of dealing with data from the ‘the clinical wild’. Specifically, we study and design a new method to simultaneously detect, segment, and classify nuclei from Haematoxylin and Eosin (H\&E) stained histopathology data, and evaluate our approach using the recent largest dataset: PanNuke. We address the detection and classification of each nuclei as a novel semantic keypoint estimation problem to determine the center point of each nuclei. Next, the corresponding class-agnostic masks for nuclei center points are obtained using dynamic instance segmentation. Meanwhile, we proposed a novel Joint Pyramid Fusion Module (JPFM) to model the cross-scale dependencies, thus enhancing the local feature for better nuclei detection and classification. By decoupling two simultaneous challenging tasks and taking advantage of JPFM, our method can benefit from class-aware detection and class-agnostic segmentation, thus leading to a significant performance boost. We demonstrate the superior performance of our proposed approach for nuclei segmentation and classification across 19 different tissue types, delivering new benchmark results.
 
 ## News:
-\[2023/5/15\] Our paper have been accepted by TETCI.
+\[2023/5/15\] Our paper have been accepted by TETCI. \
 \[2023/5/1\] We release the training and inference code, and the training instruction.
 
 
