@@ -21,6 +21,7 @@ model:
   stacked_convs: 7
   kernel_size: 1
   num_classes: 5
+  output_stride: 4
 
 train:
   max_epoch: 100                # maximum number of training iterations

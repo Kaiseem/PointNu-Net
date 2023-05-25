@@ -21,6 +21,7 @@ model:
   stacked_convs: 7
   num_classes: 6
   kernel_size: 1
+  output_stride: 4
 
 
 train:

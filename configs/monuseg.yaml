@@ -20,6 +20,8 @@ model:
   ins_out_channels: 256
   stacked_convs: 7
   num_classes: 2
+  kernel_size: 1
+  output_stride: 4
 
 
 train:
