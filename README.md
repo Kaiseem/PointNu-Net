@@ -69,8 +69,9 @@ PointNu-Net
 ```
 
 ## 3. Training and Inference
-To reproduce the performance, you need one 3090 GPU at least
-Download ImageNet Pretrain Checkpoints from official [HRNet]([https://github.com/vqdang/hover_net](https://github.com/HRNet/HRNet-Image-Classification)).
+To reproduce the performance, you need one 3090 GPU at least.
+
+Download ImageNet Pretrain Checkpoints from official [HRNet](https://github.com/HRNet/HRNet-Image-Classification).
 
 <details>
   <summary>
