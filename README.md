@@ -129,7 +129,6 @@ python eval_pannuke.py --name=pannuke_exp --train_fold={} --test_fold={}
 
 </details>
 
-The pretrained model shall be released soon.
 
 ## Citation
 If our work or code helps you, please consider to cite our paper. Thank you!
