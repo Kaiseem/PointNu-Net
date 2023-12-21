@@ -3,7 +3,7 @@ Copyright (C) 2018 NVIDIA Corporation.  All rights reserved.
 Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
 """
 
-from solo_trainer import solo_Trainer
+from trainer import Trainer
 
 try:
     from itertools import izip as zip
@@ -42,7 +42,7 @@ if __name__ == '__main__':
     opts.config=os.path.join(opts.output_dir,'{}/config.yaml'.format(opts.name))
 
     config=get_config(opts.config)
-    trainer = solo_Trainer(config)
+    trainer = Trainer(config)
     trainer.cuda()
 
     load_size = opts.load_size
