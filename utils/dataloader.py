@@ -40,11 +40,64 @@ class NucleiDataset(data.Dataset):
         self.num_class=config['model']['num_classes']
         self.use_class= config['model']['num_classes']>2 and 'CoNSeP' in config['dataroot']
         print(f'use classes {self.use_class}')
-        self.images,self.masks,self.labels=self.load_crop_data(self.img_paths,self.gt_paths)
+       
+        if 'cpm' in config['dataroot'].lower():
+            self.images,self.masks,self.labels=self.load_cpm17(self.img_paths,self.gt_paths)
+        else:
+            self.images,self.masks,self.labels=self.load_crop_data(self.img_paths,self.gt_paths)
 
         self._size =self.images.shape[0]
         self.setup_augmentor(seed)
+        
+    def load_cpm17(self, img_paths, gt_paths, patch_size=384, stride=128):
+        out_imgs = []
+        out_masks = []
+        out_labels = []
+        for ip, mp in zip(img_paths, gt_paths):
+            assert os.path.basename(ip)[:-4] == os.path.basename(mp)[:-4]
+            if '.tif' in ip:
+                with TiffFile(ip) as t:
+                    im=t.asarray()
+            else:
+                im = np.array(Image.open(ip).convert('RGB'))
+            matfile=scio.loadmat(mp)
+            mk=matfile['inst_map'].astype(np.int16)
 
+            if self.use_class:
+                lbl=matfile['inst_type'][:,0].astype(np.uint8)
+                lbl[lbl == 4] = 3
+                lbl[lbl == 5] = 4
+                lbl[lbl == 6] = 4
+                lbl[lbl == 7] = 4
+            else:
+                lbl=[1]*(np.max(mk))
+            hs=list(range(0,im.shape[0]-patch_size,patch_size))+[im.shape[0]-patch_size]
+            ws=list(range(0,im.shape[1]-patch_size,patch_size))+[im.shape[1]-patch_size]
+            ims=[]
+            mks=[]
+            for h in hs:
+                for w in ws:
+                    ims.append(im[h:h+patch_size,w:w+patch_size])
+                    mks.append(mk[h:h + patch_size, w:w + patch_size])
+            ims=np.stack(ims,0)
+            mks=np.stack(mks,0)
+            out_imgs.append(ims)
+            out_masks.append(mks)
+            for idx in range(mks.shape[0]):
+                tmk=mks[idx]
+                olabel = {}
+                for ui in np.unique(tmk):
+                    if ui==0:
+                        continue
+                    olabel[ui]=lbl[ui-1]
+                out_labels.append(olabel)
+        out_imgs = np.concatenate(out_imgs)
+        out_masks = np.concatenate(out_masks)
+        assert len(out_imgs.shape) == 4 and out_imgs.dtype == np.uint8
+
+        print(f'processed data with size {len(out_imgs)} & {len(out_labels)}')
+        return out_imgs, out_masks, out_labels
+        
     def load_crop_data(self, img_paths, gt_paths, patch_size=384, stride=128):
         out_imgs = []
         out_masks = []
